@@ -1,0 +1,35 @@
+<nz-spin *ngIf="loading" [nzSize]="'large'" align="center"></nz-spin>
+<div *ngIf="!loading">
+    <nz-table #licenseTable class="table table-striped" [nzData]="licenses">
+        <thead>
+        <tr>
+          <th>Key</th>
+          <th>Software</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let license of licenseTable.data">
+          <td>
+            <ng-container>{{ license.key }}</ng-container>
+          </td>
+          <td>
+            <ng-container>{{ license.software.name }} &nbsp; {{ license.software.version }}</ng-container>
+          </td>
+          <td>
+            <ng-container>
+              <nz-popconfirm [nzTitle]="'Sure to unassign?'" (nzOnConfirm)="onUnassignClick(license)" nzOkType="danger" nzOkText="Unassign">
+                <button nz-button nzType="danger" nzSize="small" nz-popconfirm>Unasssign</button>
+              </nz-popconfirm>
+            </ng-container>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+</div>
+<div class="ant-modal-footer modal-footer-hotfix">
+  <div nz-row>
+    <button nz-button nzType="default" (click)="onCloseClick()">Close</button>&nbsp;
+  </div>
+</div>
+

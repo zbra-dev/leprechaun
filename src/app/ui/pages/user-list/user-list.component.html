@@ -1,0 +1,32 @@
+<scaffold>
+
+  <nz-table #userTable class="table table-striped" [nzData]="users | async">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userTable.data">
+        <td>
+          <ng-container><nz-avatar nzSrc="{{ user.picture }}"></nz-avatar>&nbsp;{{ user.name }}</ng-container>
+        </td>
+        <td>
+          <ng-container>{{ user.email }}</ng-container>
+        </td>
+
+        <td>
+          <ng-container>
+            <button nz-button nzType="default" nzSize="small" (click)="onLicensesClick(user.id)">Licenses</button>&nbsp;
+            <nz-popconfirm [nzTitle]="'Sure to delete?'" (nzOnConfirm)="onDeleteClick(user.id)" nzOkType="danger" nzOkText="Delete">
+              <button nz-button nzType="danger" nzSize="small" nz-popconfirm>Delete</button>
+            </nz-popconfirm>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+</scaffold>

@@ -1,0 +1,43 @@
+<scaffold>
+
+  <button nz-button nzType="primary" (click)="onAddNewLicenseClick()">Add new license</button>
+  <br><br>
+
+  <nz-table #licenseTable id="license-table" class="table table-striped" [nzData]="licenses | async">
+    <thead>
+    <tr>
+      <th>Key</th>
+      <th>Software</th>
+      <th>User</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let license of licenseTable.data">
+      <td>
+        <ng-container>{{ license.key }}</ng-container>
+      </td>
+      <td>
+        <ng-container>{{ license.software.name }} &nbsp; {{ license.software.version }}</ng-container>
+      </td>
+      <td>
+        <ng-container>{{ license.user.name }}</ng-container>
+      </td>
+
+      <td>
+        <ng-container>
+          <button nz-button nzType="default" nzSize="small" (click)="onEditClick(license)">Edit</button>
+        </ng-container>
+        &nbsp;
+        <ng-container>
+          <nz-popconfirm [nzTitle]="'Sure to delete?'" (nzOnConfirm)="onDeleteClick(license.id)" nzOkType="danger" nzOkText="Delete">
+            <button nz-button nzType="danger" nzSize="small" nz-popconfirm>Delete</button>
+          </nz-popconfirm>
+        </ng-container>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+
+</scaffold>

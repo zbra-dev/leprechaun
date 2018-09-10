@@ -1,0 +1,40 @@
+<form nz-form [formGroup]="angForm" novalidate>
+
+  <div nz-row>
+
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label>Name</nz-form-label>
+        <nz-form-control>
+          <input formControlName="name" nz-input #name value="{{ model.name }}" [(ngModel)]="model.name">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label>Version</nz-form-label>
+        <nz-form-control>
+          <input formControlName="version" nz-input #version value="{{ model.version }}" [(ngModel)]="model.version">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label>Icon</nz-form-label>
+        <app-image-upload [imageUrl]="this.model.icon" (output)="setSelectedFile($event)"></app-image-upload>
+      </nz-form-item>
+    </div>
+
+  </div>
+
+  <div class="ant-modal-footer modal-footer-hotfix">
+    <div nz-row>
+      <button nz-button nzType="default" (click)="clearForm()">Clear</button>&nbsp;
+      <button *ngIf="!model.id" nz-button nzType="primary" [nzLoading]="isLoading" (click)="addSoftware()">Add</button>
+      <button *ngIf="model.id" nz-button nzType="primary" [nzLoading]="isLoading" (click)="editSoftware()">Save</button>
+    </div>
+  </div>
+
+</form>

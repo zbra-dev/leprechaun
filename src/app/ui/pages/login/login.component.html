@@ -1,0 +1,9 @@
+<div style="text-align:center">
+  <h2 align="center">Login Page</h2>
+  <ng-container *ngIf="!isLoggedIn()">
+    <button id="login" nz-button nzType="primary" (click)="signInWithGoogle()">Login with<i class="anticon anticon-google"></i></button>
+  </ng-container>
+  <ng-container *ngIf="isLoggedIn()">
+    <button nz-button nzType="primary" disabled>Login with<i class="anticon anticon-google"></i></button>
+  </ng-container>
+</div>

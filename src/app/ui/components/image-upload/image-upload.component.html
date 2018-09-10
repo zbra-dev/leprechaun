@@ -1,0 +1,14 @@
+<label for="upload">
+  <div *ngIf="!imageUrl" class="ant-upload ant-upload-select ant-upload-select-picture-card ng-star-inserted" ng-reflect-ng-class="ant-upload,ant-upload-select,a" style="width: 128px; height: 128px;">
+    <div nz-upload-btn="" class="ant-upload" ng-reflect-options="[object Object]" tabindex="0" role="button">
+      <i _ngcontent-c10="" class="anticon anticon-plus ng-star-inserted"></i>
+      <div _ngcontent-c10="" class="ant-upload-text ng-star-inserted">Upload</div>
+    </div>
+  </div>
+  <div *ngIf="imageUrl" class="ant-upload ant-upload-select ant-upload-select-picture-card ng-star-inserted" ng-reflect-ng-class="ant-upload,ant-upload-select,a">
+    <div nz-upload-btn="" class="ant-upload" ng-reflect-options="[object Object]" tabindex="0" role="button">
+      <img _ngcontent-c10="" class="avatar ng-star-inserted" [src]="imageUrl" style="width: 110px; height: 110px;">
+    </div>
+  </div>
+</label>
+<input type="file" id="upload" style="display: none" (change)="detectFiles($event)" #pictureFile>

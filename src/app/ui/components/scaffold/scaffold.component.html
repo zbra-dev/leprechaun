@@ -1,0 +1,49 @@
+<nz-layout class="layout full-screen">
+  <nz-header>
+
+    <div nz-row nzType="flex" nzJustify="center">
+      <div nz-col nzSpan="18" nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="18" nzXXl="18">
+        <div nz-row>
+          <div nz-col nzSpan="12">
+            <div class="logo">Leprechaun</div>
+          </div>
+          <div nz-col nzSpan="12">
+            <div nz-row nzType="flex" nzJustify="end">
+              <div nz-col>
+                <nz-avatar nzSrc="{{ authenticatedUser.picture }}" nz-popover nzTitle="{{ authenticatedUser.name }}" [(nzVisible)]="visible" nzTrigger="click" [nzContent]="popoverTemplate" nzPlacement="bottomRight"></nz-avatar>
+                <ng-template #popoverTemplate>
+                  <p><a (click)="onEditProfileClick()">Edit Profile</a></p>
+                  <p><a (click)="logout()">Logout</a></p>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nz-header>
+
+  <div nz-row nzType="flex" nzJustify="center">
+    <div nz-col nzSpan="18" nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="18" nzXXl="18">
+      <nz-content style="padding:0 50px;">
+        <div style="margin:16px 0;"></div>
+        <nz-layout style="padding:24px 0; background: #fff">
+          <nz-sider [nzWidth]="200" style="background:#fff">
+
+            <ul nz-menu [nzTheme]="'light'" [nzMode]="'inline'">
+              <li nz-menu-item [nzSelected]="isSelected('/software-list')"><a routerLink="/software-list" routerLinkActive="active"><i class="anticon anticon-desktop"></i>Softwares</a></li>
+              <li nz-menu-item [nzSelected]="isSelected('/license-list')"><a routerLink="/license-list" routerLinkActive="active"><i class="anticon anticon-code-o"></i>Licenses</a></li>
+              <li nz-menu-item [nzSelected]="isSelected('/user-list')"><a routerLink="/user-list" routerLinkActive="active"><i class="anticon anticon-team"></i>Users</a></li>
+            </ul>
+
+          </nz-sider>
+          <nz-content style="padding: 0 24px; min-height: 280px;">
+
+            <ng-content></ng-content>
+
+          </nz-content>
+        </nz-layout>
+      </nz-content>
+    </div>
+  </div>
+</nz-layout>

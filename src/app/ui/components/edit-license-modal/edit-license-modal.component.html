@@ -1,0 +1,46 @@
+<form nz-form [formGroup]="angForm" novalidate>
+
+  <div nz-row>
+
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label>Key</nz-form-label>
+        <nz-form-control>
+          <input formControlName="key" nz-input [(ngModel)]="model.key">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label>Software</nz-form-label>
+        <nz-form-control>
+          <nz-select nzAllowClear nzShowSearch formControlName="software" [(ngModel)]="model.software" [compareWith]="compareFn">
+            <nz-option *ngFor="let s of softwares | async" [nzValue]="s" [nzLabel]="s.name + ' ' + s.version"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+  </div>
+
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label>User</nz-form-label>
+        <nz-form-control>
+          <nz-select nzAllowClear nzShowSearch formControlName="user" [(ngModel)]="model.user" [compareWith]="compareFn">
+            <nz-option *ngFor="let u of users | async" [nzValue]="u" [nzLabel]="u.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+  <div class="ant-modal-footer modal-footer-hotfix">
+    <div nz-row>
+      <button nz-button nzType="default" (click)="clearForm()">Clear</button>&nbsp;
+      <button *ngIf="!model.id" nz-button nzType="primary" (click)="addLicense()">Add</button>
+      <button *ngIf="model.id" nz-button nzType="primary" (click)="editLicense()">Save</button>
+    </div>
+  </div>
+
+</form>

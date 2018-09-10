@@ -1,0 +1,58 @@
+<form nz-form [formGroup]="angForm" novalidate>
+
+  <div nz-row>
+
+    <div nz-col>
+      <nz-form-item>
+
+        <nz-form-label>Name</nz-form-label>
+        <nz-form-control>
+          <input formControlName="name" nz-input [(ngModel)]="model.name">
+        </nz-form-control>
+
+      </nz-form-item>
+    </div>
+
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label>Email</nz-form-label>
+        <p>{{ model.email }}</p>
+      </nz-form-item>
+    </div>
+
+  </div>
+
+  <div nz-col>
+    <nz-form-item>
+      <nz-form-label>Profile picture</nz-form-label>
+
+      <!--<label for="upload">-->
+        <!--<div *ngIf="!avatarUrl" class="ant-upload ant-upload-select ant-upload-select-picture-card ng-star-inserted" ng-reflect-ng-class="ant-upload,ant-upload-select,a" style="width: 128px; height: 128px;">-->
+          <!--<div nz-upload-btn="" class="ant-upload" ng-reflect-options="[object Object]" tabindex="0" role="button">-->
+            <!--<i _ngcontent-c10="" class="anticon anticon-plus ng-star-inserted"></i>-->
+            <!--<div _ngcontent-c10="" class="ant-upload-text ng-star-inserted">Upload</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div *ngIf="avatarUrl" class="ant-upload ant-upload-select ant-upload-select-picture-card ng-star-inserted" ng-reflect-ng-class="ant-upload,ant-upload-select,a">-->
+          <!--<div nz-upload-btn="" class="ant-upload" ng-reflect-options="[object Object]" tabindex="0" role="button">-->
+            <!--<img _ngcontent-c10="" class="avatar ng-star-inserted" [src]="avatarUrl" style="width: 110px; height: 110px;">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</label>-->
+
+        <!--<avatarUrl type="file" id="upload" style="display: none" (change)="detectFiles($event)" #pictureFile>-->
+
+      <app-image-upload [imageUrl]="this.model.picture" (output)="setSelectedFile($event)"></app-image-upload>
+
+    </nz-form-item>
+  </div>
+
+  <div class="ant-modal-footer modal-footer-hotfix">
+    <div nz-row>
+      <button nz-button nzType="default" (click)="clearForm()">Clear</button>
+      &nbsp;
+      <button nz-button nzType="primary" (click)="editUser()" [nzLoading]="isLoading">Save</button>
+    </div>
+  </div>
+
+</form>

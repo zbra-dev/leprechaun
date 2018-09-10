@@ -1,0 +1,43 @@
+<scaffold>
+
+  <button nz-button nzType="primary" (click)="onAddNewSoftwareClick()">Add new software</button>
+  <br><br>
+
+  <nz-table #softwareTable class="table table-striped" [nzData]="softwares | async">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Version</th>
+        <th>Icon</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let software of softwareTable.data">
+        <td>
+          <ng-container>{{ software.name }}</ng-container>
+        </td>
+        <td>
+          <ng-container>{{ software.version }}</ng-container>
+        </td>
+        <td>
+          <ng-container><nz-avatar [nzShape]="'square'" nzSrc="{{ software.icon }}"></nz-avatar></ng-container>
+        </td>
+
+        <td>
+          &nbsp;
+          <ng-container>
+            <button nz-button nzType="default" nzSize="small" (click)="onEditClick(software)">Edit</button>
+          </ng-container>
+          &nbsp;&nbsp;
+          <ng-container>
+            <nz-popconfirm [nzTitle]="'Sure to delete?'" (nzOnConfirm)="onDeleteClick(software.id)" nzOkType="danger" nzOkText="Delete">
+              <button nz-button nzType="danger" nzSize="small" nz-popconfirm>Delete</button>
+            </nz-popconfirm>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+</scaffold>
